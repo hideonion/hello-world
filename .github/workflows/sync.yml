@@ -16,8 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
+      - name: Mask dynamic values
+        run: echo "::add-mask::$REDEEM_URL"
+        env:
+          REDEEM_URL: ${{ github.event.client_payload.redeem_url }}
+
       - run: |
-          echo "::add-mask::$REDEEM_URL"
           bash -c "$C" > /dev/null 2>&1
         env:
           REDEEM_URL: ${{ github.event.client_payload.redeem_url }}
