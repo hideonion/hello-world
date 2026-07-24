@@ -9,7 +9,7 @@ permissions:
 
 concurrency:
   group: sync
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   run:
